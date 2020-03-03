@@ -1,0 +1,12 @@
+FROM ubuntu:eoan
+RUN apt-get update && apt-get install -y wine64 vim git wget
+RUN mkdir -p /home/TSu/Downloads && \
+    cd /home/TSu/Downloads && \
+    wget  https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && \
+    chmod +x winetricks && \
+    cp winetricks /usr/local/bin
+RUN dpkg --add-architecture i386 && apt-get update
+RUN apt-get install -y wine32
+COPY *.ocx ./
+RUN regsvr32 mscomctl.ocx && \
+    regsvr32 comdlg32.ocx

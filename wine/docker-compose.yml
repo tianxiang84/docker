@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  wine:
+    build:
+      context: ./
+      dockerfile: Dockerfile_wine
+    image: tianxiang84/docker:wine
+    container_name: docker_wine
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../wine:/home/TSu/Projects/programmingLanguage/docker/wine
+      - ../wine/wfd:/home/TSu/.wine/drive_c/wfd
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    env_file: dockerWine.env
+    working_dir: /home/TSu/Projects/programmingLanguage/docker/wine
+    entrypoint:
+      - /bin/bash
+      - dockerWineEntrypoint.sh
