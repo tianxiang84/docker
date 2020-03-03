@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+        ubuntu:
+                image: ubuntu:eoan
+                stdin_open: true
+                tty: true
+                volumes:
+                        - ./:/home/TSu/Projects/programmingLanguage/docker/dockerStop
+                        - /tmp/.X11-unix:/tmp/.X11-unix
+                env_file: dockerStop.env
+                working_dir: /home/TSu/Projects/programmingLanguage/docker/dockerStop
+                entrypoint:
+                        - /bin/bash
+                        - dockerStopEntrypoint.sh
